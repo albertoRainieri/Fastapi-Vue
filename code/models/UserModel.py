@@ -1,11 +1,12 @@
-# -*- coding: utf-8 -*-
-# モデルの定義
+
 from sqlalchemy import Column, Integer, String
+#from sqlalchemy.ext.declarative import declarative_base
 from pydantic import BaseModel
 from db import Base
 from db import ENGINE
 
 
+#Base = declarative_base()
 # userテーブルのモデルUserTableを定義
 class UserTable(Base):
     __tablename__ = 'user'
@@ -14,7 +15,6 @@ class UserTable(Base):
     age = Column(Integer)
 
 
-# POSTやPUTのとき受け取るRequest Bodyのモデルを定義
 class User(BaseModel):
     id: int
     name: str
