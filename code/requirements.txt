@@ -7,3 +7,5 @@ python-dotenv
 nano
 fastapi_login
 python-multipart
+passlib[bcrypt] #hashing
+"python-jose[cryptography]" #jwt tokens

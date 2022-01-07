@@ -2,18 +2,15 @@ version: "3.3"
 
 services:
   # MySQL
-  db:
-    container_name: "db"
+  mysql:
+    container_name: "mysql_v2"
     # path配下のDockerfile読み込み
     build: ./docker/mysql
     # コンテナが落ちたら再起動する
     restart: always
     tty: true
     environment:
-      MYSQL_DATABASE: sample_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password # ユーザのパスワード
-      MYSQL_ROOT_PASSWORD: password # ルートパスワード
+      - ./.env
     ports:
       - "3306:3306"
     volumes:
@@ -24,19 +21,48 @@ services:
       - local-net
 
   # FastAPI
-  api:
-    # db起動後に立ち上げる
+  backend:
     links:
-      - db
-    container_name: "api"
-    # path配下のDockerfile読み込み
-    build: ./docker/api
+      - mysql
+    container_name: "backend_v2"
+    build: ./code
     ports:
-      - "8000:8000"
+      - "5000:5000"
     volumes:
-      - ./code:/usr/src/server
+      - ./code:/code
     networks:
       - local-net
+
+  frontend:
+    container_name: "frontend_v2"
+    build: ./frontend
+    volumes:
+      - './frontend:/app'
+    ports:
+      - "80:80"
+    networks:
+      - local-net
+
+
+
+  phpmyadmin:
+    build: ./docker/phpmyadmin
+    container_name: "phpmyadmin_v2"
+    environment:
+      - PMA_ARBITRARY=1
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD= ${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD= ${MYSQL_ROOT_PASSWORD}
+#      - MAX_EXECUTION_TIME= ${MAX_EXECUTION_TIME}
+#      - MEMORY_LIMIT= ${MEMORY_LIMIT}
+#      - UPLOAD_LIMIT= ${UPLOAD_LIMIT}
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - local-net
+
 
 # コンテナ間で通信を行うためのネットワークブリッジ
 networks:
