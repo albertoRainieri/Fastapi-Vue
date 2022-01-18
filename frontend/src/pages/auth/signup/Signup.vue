@@ -1,8 +1,27 @@
 <template>
-  <form @submit.prevent="onsubmit()">
+  <form @submit.prevent="register()">
+
     <va-input
       class="mb-3"
-      v-model="email"
+      v-model="request.name"
+      type="email"
+      :label="$t('Full Name')"
+      :error="!!nameErrors.length"
+      :error-messages="nameErrors"
+    />
+
+    <va-input
+      class="mb-3"
+      v-model="request.age"
+      type="integer"
+      :label="$t('Age')"
+      :error="!!ageErrors.length"
+      :error-messages="ageErrors"
+    />
+
+    <va-input
+      class="mb-3"
+      v-model="request.email"
       type="email"
       :label="$t('auth.email')"
       :error="!!emailErrors.length"
@@ -11,9 +30,18 @@
 
     <va-input
       class="mb-3"
-      v-model="password"
+      v-model="request.hashed_password"
       type="password"
       :label="$t('auth.password')"
+      :error="!!passwordErrors.length"
+      :error-messages="passwordErrors"
+    />
+
+    <va-input
+      class="mb-3"
+      v-model="request.confirm_password"
+      type="password"
+      :label="$t('Confirm Password')"
       :error="!!passwordErrors.length"
       :error-messages="passwordErrors"
     />
@@ -38,22 +66,35 @@
     </div>
 
     <div class="d-flex justify--center mt-3">
-      <va-button @click="onsubmit" class="my-0">{{ $t('auth.sign_up') }}</va-button>
+      <va-button @click="register" class="my-0">{{ $t('auth.sign_up') }}</va-button>
     </div>
   </form>
 </template>
 
 <script>
+
+import axios from 'axios';
+import VueSweetalert2 from 'vue-sweetalert2';
+
 export default {
+  
   name: 'signup',
   data () {
     return {
-      email: '',
-      password: '',
+
       agreedToTerms: false,
       emailErrors: [],
       passwordErrors: [],
+      ageErrors: [],
+      nameErrors: [],
       agreedToTermsErrors: [],
+      request: {
+        'name': '',
+        'email': '',
+        'age': '',
+        'confirm_password': '',
+        'hashed_password': ''
+      }
     }
   },
   methods: {
@@ -66,10 +107,28 @@ export default {
       }
       this.$router.push({ name: 'dashboard' })
     },
+
+    async register () {
+      this.nameErrors = this.request.name ? [] : ['Name is required']
+      this.ageErrors = this.request.password ? [] : ['Age is required']
+      this.emailErrors = this.request.email ? [] : ['Email is required']
+      this.passwordErrors = this.request.password ? [] : ['Password is required']
+      this.agreedToTermsErrors = this.request.agreedToTerms ? [] : ['You must agree to the terms of use to continue']
+
+      if (this.formReady) {
+        let response = await axios.post('auth/register', this.request)
+        let data = response.data;
+        if (data.ack == 1) {
+          this.$router.push({ name: 'dashboard' })
+        }
+      
+      }
+      
+    }
   },
   computed: {
     formReady () {
-      return !(this.emailErrors.length || this.passwordErrors.length || this.agreedToTermsErrors.length)
+      return !(this.ageErrors.length || this.nameErrors.length || this.emailErrors.length || this.passwordErrors.length || this.agreedToTermsErrors.length)
     },
   },
 }

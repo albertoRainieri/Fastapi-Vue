@@ -23,6 +23,20 @@ class UserSchema(BaseModel):
     email: str
     hashed_password: str
 
+class LoginSchema(BaseModel):
+    email: str
+    hashed_password: str
+
+class RegisterSchema(BaseModel):
+    name: str
+    email: str
+    age: int
+    hashed_password: str
+    confirm_password: str
+
+class TokenSchema(BaseModel):
+    token: str
+
 def main():
     # テーブルが存在しなければ、テーブルを作成
     Base.metadata.create_all(bind=ENGINE)

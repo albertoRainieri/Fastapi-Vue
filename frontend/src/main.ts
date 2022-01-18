@@ -7,6 +7,9 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import vuesticGlobalConfig from './services/vuestic-ui/global-config'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import './axios'
 
 
 const i18nConfig = {
@@ -24,6 +27,9 @@ const i18nConfig = {
 const app = createApp(App)
 app.use(store)
 app.use(router)
+app.use(VueSweetalert2)
+
+
 if (process.env.VUE_APP_GTM_ENABLED === 'true') {
   const gtmConfig = {
     id: process.env.VUE_APP_GTM_KEY,

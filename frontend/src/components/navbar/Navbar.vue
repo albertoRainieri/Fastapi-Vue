@@ -18,14 +18,14 @@
         <span class="app-navbar__text">
           {{$t('navbar.messageUs')}}&nbsp;
           <a
-            href="mailto:hello@epicmax.co"
+            href="https://github.com/albertoRainieri"
             target="_blank"
             :style="{color: colors.primary}"
           >
-            hello@epicmax.co
+            alberto.rainieri@libero.it
           </a>
           <va-button
-            href="https://github.com/epicmaxco/vuestic-admin"
+            href="https://github.com/albertoRainieri"
             color="#000000"
             class="app-navbar__github-button"
             icon="github"
@@ -38,7 +38,7 @@
       <template #right>
         <app-navbar-actions
           class="app-navbar__actions md5 lg4"
-          :user-name="userName"
+          :user-name="user"
         />
       </template>
     </va-navbar>
@@ -52,10 +52,26 @@ import { computed } from 'vue'
 import VuesticLogo from '@/components/vuestic-logo'
 import VaIconMenuCollapsed from '@/components/icons/VaIconMenuCollapsed'
 import AppNavbarActions from './components/AppNavbarActions'
+import axios from 'axios'
 
 export default {
   components: { VuesticLogo, AppNavbarActions, VaIconMenuCollapsed },
+  
+  data() {
+    return {
+      user: ''
+    }
+  },
+
+  async created() {
+      const store = useStore()
+      var token = localStorage.getItem('token')
+      var username = await axios.get('/auth/getCurrentUser/' + token)
+      this.user = username.data.slice()
+      },
+  
   setup() {
+    //username = axios.get('/auth/getCurrentUser/' + token)
     const { getColors } = useColors()
     const colors = computed(() => getColors() )
     const store = useStore()
@@ -65,11 +81,11 @@ export default {
       set: (value) => store.commit('updateSidebarCollapsedState', value)
     })
 
-    const userName = computed(() => store.state.userName)
+    //const userName = computed(() => store.state.userName)
     return {
       colors,
       isSidebarMinimized,
-      userName
+      //userName
     }
   },
 }

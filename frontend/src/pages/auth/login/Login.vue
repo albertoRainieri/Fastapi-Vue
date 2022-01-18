@@ -1,8 +1,8 @@
 <template>
-  <form @submit.prevent="onsubmit">
+  <form @submit.prevent="login">
     <va-input
       class="mb-3"
-      v-model="form.email"
+      v-model="requestLogin.email"
       type="email"
       :label="$t('auth.email')"
       :error="!!emailErrors.length"
@@ -11,7 +11,7 @@
 
     <va-input
       class="mb-3"
-      v-model="form.password"
+      v-model="requestLogin.hashed_password"
       type="password"
       :label="$t('auth.password')"
       :error="!!passwordErrors.length"
@@ -31,41 +31,39 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'login',
   data () {
     return {
-        form: new Form({
-        email: '',
-        password: '',
-        keepLoggedIn: false,
-        emailErrors: [],
-        passwordErrors: [],
-      })
+      keepLoggedIn: false,
+      emailErrors: [],
+      passwordErrors: [],
+
+      requestLogin: {
+        'email': '',
+        'hashed_password': ''
+      }
     }
   },
   computed: {
     formReady () {
-      return !form.emailErrors.length && !form.passwordErrors.length
+      return !this.emailErrors.length && !this.passwordErrors.length
     },
   },
-  methods: {
-    test () {
 
-    },
-    onsubmit () {
-      form.emailErrors = form.email ? [] : ['Email is required']
-      form.passwordErrors = form.password ? [] : ['Password is required']
-      if (!this.formReady) {
-        return
+  methods: {
+    async login () {
+      this.emailErrors = this.requestLogin.email ? [] : ['Email is required']
+      this.passwordErrors = this.requestLogin.hashed_password ? [] : ['Password is required']
+      
+      if (this.formReady) {
+        const response = await axios.post('auth/login', this.requestLogin)
+        if (response.data.ack == 1) {
+          localStorage.setItem('token', response.data.token) 
+          this.$router.push({ name: 'dashboard'})
+        }
       }
-      this.$router.push({ name: 'dashboard' })
-    },
-    login () {
-      this.form.post('http://localhost:5000/auth/login').then(response =>
-        console.log(response)
-      )
     }
-  },
-}
+}}
 </script>

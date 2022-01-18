@@ -24,6 +24,7 @@
         <router-link
           :to="{name: option.redirectTo}"
           class="profile-dropdown__item"
+          @click="onSubmit(option.redirectTo)"
         >
           {{ $t(`user.${option.name}`) }}
         </router-link>          
@@ -57,6 +58,16 @@ export default {
       ],
     },
   },
+  methods: {
+    onSubmit(destination) {
+        if (destination == 'login') {
+          console.log('token', localStorage.getItem('token'))
+          localStorage.removeItem('token')
+          console.log('token', localStorage.getItem('token'))
+        }
+    }
+  },
+
   computed: {
     theme() { return useGlobalConfig().getGlobalConfig() },
   }

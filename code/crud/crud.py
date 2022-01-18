@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 
 def read_users(db: Session):
-    users = db.query(UserTable).all()
+    users = db.query(UserTable).with_entities(UserTable.email).all()
     return users
 
 def read_user(user_id: int, db: Session):
@@ -42,3 +42,23 @@ def delete_users(db: Session):
 def delete_user(id: str, db: Session):
     db.query(UserTable).filter(UserTable.id == id).delete()
     db.commit()
+
+def isSubscribed(email: str, db:Session):
+    results = db.query(UserTable).with_entities(UserTable.email).all()
+    if results is None:
+        return False
+    for result in results:
+        if result.email == email:
+            return True
+        else:
+            return False
+
+def getCurrentUser(email: str, db:Session):
+    results = db.query(UserTable).with_entities(UserTable.email, UserTable.name).all()
+    if results is None:
+        return False
+    for result in results:
+        if result.email == email:
+            return result.name
+    return {'message': 'Name not found'}
+

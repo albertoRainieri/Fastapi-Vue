@@ -2,19 +2,36 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AuthLayout from '@/layout/auth-layout.vue'
 import AppLayout from '@/layout/app-layout.vue'
 import Page404Layout from '@/layout/page-404-layout.vue'
+import axios from "axios";
 
 import RouteViewComponent from './route-view.vue'
 import UIRoute from '@/pages/admin/ui/route'
 
+async function isAuth(){
+  let token = localStorage.getItem('token');
+  let request = {'token': token};
+  let response = await axios.post('auth/isSubscribed', request);
+  return response
+} 
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/:catchAll(.*)",
-    redirect: { name: 'dashboard' },
+    redirect: { name: 'login' },
   },
   {
     name: 'admin',
     path: '/admin',
     component: AppLayout,
+    beforeEnter: async (to, from, next) =>  {
+      if (!await isAuth()) {
+        next('/login');
+      }
+      else {
+        next();
+      }
+    },
+
     children: [
       {
         name: 'dashboard',

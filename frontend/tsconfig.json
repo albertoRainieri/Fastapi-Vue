@@ -15,7 +15,9 @@
     "allowJs": true,
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "vue-sweetalert2",
+      "jquery"
     ],
     "paths": {
       "@/*": [

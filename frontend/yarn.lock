@@ -1356,6 +1356,13 @@
   dependencies:
     "jest-diff" "^24.3.0"
 
+"@types/jquery@^3.5.13":
+  "integrity" "sha512-ZxJrup8nz/ZxcU0vantG+TPdboMhB24jad2uSap50zE7Q9rUeYlCF25kFMSmHR33qoeOgqcdHEp3roaookC0Sg=="
+  "resolved" "https://registry.npmjs.org/@types/jquery/-/jquery-3.5.13.tgz"
+  "version" "3.5.13"
+  dependencies:
+    "@types/sizzle" "*"
+
 "@types/json-schema@^7.0.3", "@types/json-schema@^7.0.4", "@types/json-schema@^7.0.5":
   "integrity" "sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ=="
   "resolved" "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.9.tgz"
@@ -1418,6 +1425,11 @@
   dependencies:
     "@types/mime" "^1"
     "@types/node" "*"
+
+"@types/sizzle@*":
+  "integrity" "sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ=="
+  "resolved" "https://registry.npmjs.org/@types/sizzle/-/sizzle-2.3.3.tgz"
+  "version" "2.3.3"
 
 "@types/source-list-map@*":
   "integrity" "sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA=="
@@ -10590,6 +10602,11 @@
     "unquote" "~1.1.1"
     "util.promisify" "~1.0.0"
 
+"sweetalert2@11.x":
+  "integrity" "sha512-o7owEtVtpqnB8y3BDCRn2taYb7URcf6RIUm120LjFxt8IHfPIm0UeHuiS3nEp5r9RKm5GlSSJOh/yuapUQcYcQ=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.3.4.tgz"
+  "version" "11.3.4"
+
 "symbol-observable@^1.1.0":
   "integrity" "sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ=="
   "resolved" "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.2.0.tgz"
@@ -11327,6 +11344,13 @@
     "hash-sum" "^1.0.2"
     "loader-utils" "^1.0.2"
 
+"vue-sweetalert2@^5.0.2":
+  "integrity" "sha512-28pcpmvaFxwoXIUkOWwhZhmsV749jXxha8JicwPoSKyFKR5FhIaZU6UHO5WlUCLIVUI6sAWY6WngK2x/iXYwZg=="
+  "resolved" "https://registry.npmjs.org/vue-sweetalert2/-/vue-sweetalert2-5.0.2.tgz"
+  "version" "5.0.2"
+  dependencies:
+    "sweetalert2" "11.x"
+
 "vue-template-es2015-compiler@^1.6.0", "vue-template-es2015-compiler@^1.9.0":
   "integrity" "sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw=="
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
@@ -11337,7 +11361,7 @@
   "resolved" "https://registry.npmjs.org/vue-yandex-maps/-/vue-yandex-maps-0.10.12.tgz"
   "version" "0.10.12"
 
-"vue@^2 || ^3.0.0-0", "vue@^2.5.2", "vue@^2.x", "vue@^3.0.0", "vue@^3.0.0-0", "vue@^3.0.1", "vue@^3.0.2", "vue@^3.0.4", "vue@^3.2.0":
+"vue@*", "vue@^2 || ^3.0.0-0", "vue@^2.5.2", "vue@^2.x", "vue@^3.0.0", "vue@^3.0.0-0", "vue@^3.0.1", "vue@^3.0.2", "vue@^3.0.4", "vue@^3.2.0":
   "integrity" "sha512-JkI3/eIgfk4E0f/p319TD3EZgOwBQfftgnkRsXlT7OrRyyiyoyUXn6embPGZXSBxD3LoZ9SWhJoxLhFh5AleeA=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.11.tgz"
   "version" "3.2.11"

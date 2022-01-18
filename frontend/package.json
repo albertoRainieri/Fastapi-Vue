@@ -30,12 +30,14 @@
     "vue-gtm": "^3.2.1",
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.0-0",
+    "vue-sweetalert2": "^5.0.2",
     "vue-yandex-maps": "^0.10.9",
     "vuestic-ui": "^1.2.8",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/jquery": "^3.5.13",
     "@types/medium-editor": "^5.0.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
