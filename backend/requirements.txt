@@ -1,0 +1,10 @@
+mysqlclient
+sqlalchemy
+uvicorn
+fastapi
+alembic
+python-dotenv
+nano
+fastapi_login
+python-multipart
+passlib[bcrypt] #hashing

@@ -10,7 +10,7 @@
             :color="colors.primary"
           />
           <router-link to="/">
-            <vuestic-logo class="logo"/>
+            <!--vuestic-logo class="logo"/-->
           </router-link>          
         </div>
       </template>

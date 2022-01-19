@@ -61,9 +61,9 @@ export default {
   methods: {
     onSubmit(destination) {
         if (destination == 'login') {
-          console.log('token', localStorage.getItem('token'))
+          //console.log('token', localStorage.getItem('token'))
           localStorage.removeItem('token')
-          console.log('token', localStorage.getItem('token'))
+          //console.log('token', localStorage.getItem('token'))
         }
     }
   },
