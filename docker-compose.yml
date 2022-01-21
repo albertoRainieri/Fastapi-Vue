@@ -28,10 +28,10 @@ services:
     container_name: "backend_v3"
     build: ./backend
     environment:
-      - MYSQL_USERNAME=root
-      - MYSQL_PASSWORD=password
-      - MYSQL_HOST=mysql_v3
-      - MYSQL_DATABASE=Experiment_Server
+      - MYSQL_USERNAME=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
       - BACKEND_URL=${BACKEND_URL}
       - SECRET_KEY=${SECRET_KEY}
       - ALGORITHM=${ALGORITHM}
