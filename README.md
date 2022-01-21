@@ -22,7 +22,12 @@ $ FLUSH PRIVILEGES;
 
 ## Frontend
 http://localhost
+Try this markdown:
+
+![alt text](https://github.com/albertoRainieri/FullStack-Application-Fastapi-Vue.js/blob/main/images/Dashboard.png)
 
 ## Check Api Specifications
 http://localhost:5000/docs
+
+![alt text](https://github.com/albertoRainieri/FullStack-Application-Fastapi-Vue.js/blob/main/images/Backend.png)
 
