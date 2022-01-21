@@ -3,7 +3,7 @@ version: "3.3"
 services:
   # MySQL
   mysql:
-    container_name: "mysql_v3"
+    container_name: "crypto_mysql"
     build: ./mysql
     restart: always
     tty: true
@@ -25,7 +25,7 @@ services:
   backend:
     links:
       - mysql
-    container_name: "backend_v3"
+    container_name: "crypto_be"
     build: ./backend
     environment:
       - MYSQL_USERNAME=${MYSQL_USERNAME}
@@ -45,7 +45,7 @@ services:
 
   # Frontend
   frontend:
-    container_name: "frontend_v3"
+    container_name: "crypto_fe"
     build: ./frontend
     volumes:
       - './frontend:/app'
@@ -58,7 +58,7 @@ services:
   # PhpMyAdmin
   phpmyadmin:
     build: ./phpmyadmin
-    container_name: "phpmyadmin_v3"
+    container_name: "crypto_phpmyadmin"
     environment:
       - PMA_ARBITRARY=1
       - MYSQL_USER=${MYSQL_USER}
