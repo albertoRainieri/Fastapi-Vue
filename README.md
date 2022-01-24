@@ -14,18 +14,21 @@ $ docker-compose up -d --build
 Enter MySql container. Enter mysql console and create a new user
 ```
 $ CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
-// CREATE USER 'newuser'@'%' IDENTIFIED BY 'password';
+# CREATE USER 'newuser'@'%' IDENTIFIED BY 'password';
 $ GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
-// GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'%';
+# GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'%';
 $ FLUSH PRIVILEGES;
 ```
 
 # Alembic
-// Enter backend container and run:
-$ alembic revision -m "First Migration"
-$ alembic upgrade head
+```
+Enter backend container and run:
 
-// Reset Containers if something goes wrong.
+$ alembic revision -m "First Migration";
+$ alembic upgrade head;
+
+Reset Containers if something goes wrong.
+```
 
 ## Frontend
 http://localhost
