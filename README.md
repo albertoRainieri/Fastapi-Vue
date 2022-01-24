@@ -21,11 +21,11 @@ $ FLUSH PRIVILEGES;
 ```
 
 # Alembic
-# Enter backend container and run:
+// Enter backend container and run:
 $ alembic revision -m "First Migration"
 $ alembic upgrade head
 
-# Reset Containers if something goes wrong.
+// Reset Containers if something goes wrong.
 
 ## Frontend
 http://localhost
