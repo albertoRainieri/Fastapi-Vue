@@ -62,7 +62,7 @@ services:
     container_name: "phpmyadmin_v3"
     environment:
       - PMA_ARBITRARY=1
-      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_USERNAME=${MYSQL_USERNAME}
       - MYSQL_PASSWORD= ${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD= ${MYSQL_ROOT_PASSWORD}
 #      - MAX_EXECUTION_TIME= ${MAX_EXECUTION_TIME}

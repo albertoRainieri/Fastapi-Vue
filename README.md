@@ -24,7 +24,7 @@ $ FLUSH PRIVILEGES;
 ```
 Enter backend container and run:
 
-$ alembic revision -m "First Migration";
+$ alembic revision --autogenerate -m "First Migration";
 $ alembic upgrade head;
 
 Reset Containers if something goes wrong.
