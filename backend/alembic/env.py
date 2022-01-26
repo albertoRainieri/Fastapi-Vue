@@ -31,6 +31,18 @@ target_metadata = UserModel.Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+#### SQL ALCHEMY CONFIGURATION ###
+user_name = os.getenv('MYSQL_USERNAME')
+password = os.getenv('MYSQL_PASSWORD')
+host = os.getenv('MYSQL_HOST')
+database_name = os.getenv('MYSQL_DATABASE')
+
+url = 'mysql://%s:%s@%s/%s?' % (
+        user_name,
+        password,
+        host,
+        database_name,
+    )
 
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
@@ -44,7 +56,8 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    #url = config.get_main_option("sqlalchemy.url")
+
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -63,6 +76,23 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
+    
+    url = 'mysql://%s:%s@%s/%s?' % (
+        user_name,
+        password,
+        host,
+        database_name,
+    )
+
+    context.configure(
+        url=url,
+        target_metadata=target_metadata,
+        literal_binds=False,
+        dialect_opts={"paramstyle": "named"},
+    )
+
+    config.set_main_option('sqlalchemy.url', url)
+
     connectable = engine_from_config(
         config.get_section(config.config_ini_section),
         prefix="sqlalchemy.",

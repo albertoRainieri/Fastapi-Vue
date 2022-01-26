@@ -7,7 +7,6 @@ from db import ENGINE
 
 
 #Base = declarative_base()
-# userテーブルのモデルUserTableを定義
 class UserTable(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -38,7 +37,6 @@ class TokenSchema(BaseModel):
     token: str
 
 def main():
-    # テーブルが存在しなければ、テーブルを作成
     Base.metadata.create_all(bind=ENGINE)
 
 if __name__ == "__main__":
