@@ -29,6 +29,10 @@ $ alembic upgrade head;
 
 Reset Containers if something goes wrong.
 ```
+## issues
+```
+frontend container might run into issues. DevDependencies might not be found
+```
 
 ## Frontend
 http://localhost
