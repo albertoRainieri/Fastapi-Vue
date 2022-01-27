@@ -16,8 +16,7 @@ COPY ./ ./
 
 # build app for production with minification
 RUN npm run build
-#RUN export PATH="$/usr/local/bin/vue:$PATH"
-RUN npm install -g @vue/cli-service
+RUN npm audit fix
 EXPOSE 80
 #CMD [ "http-server", "./dist" ]
 CMD ["npm", "run", "serve"]
