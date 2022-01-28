@@ -30,13 +30,13 @@ $ alembic upgrade head;
 Reset Containers if something goes wrong.
 ```
 ## issues
-```
+
 frontend container might run into issues. DevDependencies might not be found because they are not installed globally. This may happen if you tried to create the containers many times. In this case, just remove old images/containers and rebuild the frontend image.
 If this does not work, you can also fix the issue by running $ npm audit fix inside the container. In order to do that, you need to slightly modify the CMD command in the Dockerfile with "CMD [ "http-server", "./dist" ]", otherwise you can not access the container.
 
-# Other issues can be related to alembic (migration tool). Alembic is installed in the backend container. In case something goes wrong, remove tables if present in the mysql (you can use Phpmyadmin for this) and remove alembic/ and alembic.ini in the backend container. Restart alembic by doing "alembic init alembic" and configure "sqlalchemy.url" and "metadata" in the alembic/env.py file. Find more information here "https://alembic.sqlalchemy.org/en/latest/autogenerate.html"
+Other issues can be related to alembic (migration tool). Alembic is installed in the backend container. In case something goes wrong, remove tables if present in the mysql (you can use Phpmyadmin for this) and remove alembic/ and alembic.ini in the backend container. Restart alembic by doing "alembic init alembic" and configure "sqlalchemy.url" and "metadata" in the alembic/env.py file. Find more information here "https://alembic.sqlalchemy.org/en/latest/autogenerate.html"
 Hope this helps.
-```
+
 
 ## Frontend
 http://localhost
