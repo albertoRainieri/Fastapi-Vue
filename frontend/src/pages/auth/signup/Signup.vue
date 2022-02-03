@@ -42,8 +42,8 @@
       v-model="request.confirm_password"
       type="password"
       :label="$t('Confirm Password')"
-      :error="!!passwordErrors.length"
-      :error-messages="passwordErrors"
+      :error="!!confirmPasswordErrors.length"
+      :error-messages="confirmPasswordErrors"
     />
 
     <div class="auth-layout__options d-flex align--center justify--space-between">
@@ -85,6 +85,7 @@ export default {
       agreedToTerms: false,
       emailErrors: [],
       passwordErrors: [],
+      confirmPasswordErrors: [],
       ageErrors: [],
       nameErrors: [],
       agreedToTermsErrors: [],
@@ -98,22 +99,14 @@ export default {
     }
   },
   methods: {
-    onsubmit () {
-      this.emailErrors = this.email ? [] : ['Email is required']
-      this.passwordErrors = this.password ? [] : ['Password is required']
-      this.agreedToTermsErrors = this.agreedToTerms ? [] : ['You must agree to the terms of use to continue']
-      if (!this.formReady) {
-        return
-      }
-      this.$router.push({ name: 'dashboard' })
-    },
 
     async register () {
       this.nameErrors = this.request.name ? [] : ['Name is required']
-      this.ageErrors = this.request.password ? [] : ['Age is required']
+      this.ageErrors = this.request.age ? [] : ['Age is required']
       this.emailErrors = this.request.email ? [] : ['Email is required']
-      this.passwordErrors = this.request.password ? [] : ['Password is required']
-      this.agreedToTermsErrors = this.request.agreedToTerms ? [] : ['You must agree to the terms of use to continue']
+      this.passwordErrors = this.request.hashed_password ? [] : ['Password is required']
+      this.confirmPasswordErrors = this.request.confirm_password ? [] : ['Password is required']
+      this.agreedToTermsErrors = this.agreedToTerms ? [] : ['You must agree to the terms of use to continue']
 
       if (this.formReady) {
         let response = await axios.post('auth/register', this.request)
