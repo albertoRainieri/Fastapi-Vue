@@ -44,14 +44,17 @@ services:
     networks:
       - local-net
 
-  # Frontend
   frontend:
-    container_name: "frontend_v3"
+    container_name: "frontend"
     build: ./frontend
-    volumes:
-      - './frontend:/app'
+    environment:
+      - VUE_APP_BACKEND_URL=$BACKEND_URL
+      - VUE_APP_BACKEND_PORT=$BACKEND_PORT
     ports:
       - "80:80"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/config:/app/config
     networks:
       - local-net
 
